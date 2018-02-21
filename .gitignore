@@ -3,3 +3,7 @@
 ################################################################################
 
 /.vs
+/Memberships/.vs
+/Memberships/Memberships/bin
+/Memberships/Memberships/obj/Debug
+/Memberships/packages
