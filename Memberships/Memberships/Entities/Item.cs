@@ -36,12 +36,12 @@ namespace Memberships.Entities
         public int ItemTypeId { get; set; }
         public int SectionId { get; set; }
         public int PartId { get; set; }
-        public int IsFree { get; set; }
-        [DisplayName("Item Type")]
-        ICollection<ItemType> ItemTypes { get; set; }
+        public bool IsFree { get; set; }
+        [DisplayName("Item Types")]
+        public ICollection<ItemType> ItemTypes { get; set; }
         [DisplayName("Sections")]
-        ICollection<Section> Sections { get; set; }
+        public ICollection<Section> Sections { get; set; }
         [DisplayName("Parts")]
-        ICollection<Part> Parts { get; set; }
+        public ICollection<Part> Parts { get; set; }
     }
 }
