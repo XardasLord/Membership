@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Memberships.Extensions
@@ -16,14 +14,6 @@ namespace Memberships.Extensions
                 Value = x.GetPropertyValue("Id"),
                 Selected = x.GetPropertyValue("Id").Equals(selectedValue.ToString())
             });
-
-            //return from item in items
-            //       select new SelectListItem
-            //       {
-            //           Text = item.GetPropertyValue("Title"),
-            //           Value = item.GetPropertyValue("Id"),
-            //           Selected = item.GetPropertyValue("Id").Equals(selectedValue.ToString())
-            //       };
         }
     }
 }

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Memberships.Entities;
 using Memberships.Models;
@@ -87,12 +82,12 @@ namespace Memberships.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ProductId,ItemId,OldPRoductId,OldItemId")] ProductItem productItem)
+        public async Task<ActionResult> Edit([Bind(Include = "ProductId,ItemId,OldProductId,OldItemId")] ProductItem productItem)
         {
             if (ModelState.IsValid)
             {
-                if(await productItem.CanChange(db))
-                    await productItem.Change(db);
+                if(await productItem.CanChangeAsync(db))
+                    await productItem.ChangeAsync(db);
 
                 return RedirectToAction("Index");
             }
