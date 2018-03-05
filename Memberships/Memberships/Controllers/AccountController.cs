@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Memberships.Models;
+using Memberships.Extensions;
+using System.Collections.Generic;
 
 namespace Memberships.Controllers
 {
@@ -489,5 +491,13 @@ namespace Memberships.Controllers
             }
         }
         #endregion
+
+        public async Task<ActionResult> Index()
+        {
+            var users = new List<UserViewModel>();
+            await users.GetUsersAsync();
+
+            return View(users);
+        }
     }
 }
