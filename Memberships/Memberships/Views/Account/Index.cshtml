@@ -10,7 +10,7 @@
 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
 {
     <p>
-        @Html.Partial("_CreateButtonPartial");
+        @Html.Partial("_CreateButtonPartial")
     </p>
     <table class="table table-condensed table-striped">
         <tr class="success">

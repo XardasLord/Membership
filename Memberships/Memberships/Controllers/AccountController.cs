@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using Memberships.Models;
 using Memberships.Extensions;
 using System.Collections.Generic;
+using System.Net;
 
 namespace Memberships.Controllers
 {
@@ -498,6 +499,152 @@ namespace Memberships.Controllers
             await users.GetUsersAsync();
 
             return View(users);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/Create
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(UserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    IsActive = true,
+                    Registered = DateTime.Now,
+                    EmailConfirmed = true
+                };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Account");
+                }
+                AddErrors(result);
+            }
+            
+            return View(model);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Edit(string userId)
+        {
+            if (userId.IsNullOrEmpty())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser user = await UserManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            var model = new UserViewModel()
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                Id = user.Id,
+                Password = user.PasswordHash
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(UserViewModel model)
+        {
+            if (model == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByIdAsync(model.Id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                user.Email = model.Email;
+                user.UserName = model.Email;
+                user.FirstName = model.FirstName;
+                if (!user.PasswordHash.Equals(model.Password))
+                    user.PasswordHash = UserManager.PasswordHasher.HashPassword(model.Password);
+
+                var result = await UserManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Account");
+                }
+                AddErrors(result);
+            }
+
+            return View(model);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Delete(string userId)
+        {
+            if (userId.IsNullOrEmpty())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser user = await UserManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            var model = new UserViewModel()
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                Id = user.Id,
+                Password = "Fake Password"
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Delete(UserViewModel model)
+        {
+            if (model == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByIdAsync(model.Id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                var result = await UserManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    var db = new ApplicationDbContext();
+                    var subscriptions = db.UserSubscriptions.Where(u => u.UserId.Equals(user.Id));
+                    db.UserSubscriptions.RemoveRange(subscriptions);
+                    await db.SaveChangesAsync();
+
+                    return RedirectToAction("Index", "Account");
+                }
+                AddErrors(result);
+            }
+
+            return View(model);
         }
     }
 }

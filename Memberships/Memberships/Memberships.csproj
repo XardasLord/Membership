@@ -224,6 +224,7 @@
     <Compile Include="Extensions\ICollectionExtensions.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Extensions\ReflectionExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -265,7 +266,7 @@
     <Content Include="Areas\Admin\Views\Section\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Section\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Section\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_BackToListButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_EditButtonPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Part\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Part\Delete.cshtml" />
@@ -363,6 +364,9 @@
     <Content Include="Views\Shared\_CreateButtonPartial.cshtml" />
     <Content Include="Views\Shared\_SmallButtonPartial.cshtml" />
     <Content Include="Views\Shared\_TableButtonsPartial.cshtml" />
+    <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Account\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
