@@ -660,7 +660,7 @@ namespace Memberships.Controllers
 
             //Getting user subscriptions assigned to the current userId
             model.UserSubscriptions = await db.UserSubscriptions
-                .Where(us => us.SubscriptionId.Equals(userId))
+                .Where(us => us.UserId.Equals(userId))
                 .Join(db.Subscriptions,
                     us => us.SubscriptionId,
                     sub => sub.Id,
@@ -687,6 +687,7 @@ namespace Memberships.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Subscriptions(UserSubscriptionViewModel model)
         {
             if (model == null)
@@ -708,6 +709,27 @@ namespace Memberships.Controllers
             }
 
             return RedirectToAction("Subscriptions", "Account", new { userId = model.UserId });
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> RemoveUserSubscription(string userId, int subscriptionId)
+        {
+            if (userId.IsNullOrEmpty() || subscriptionId <= 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (ModelState.IsValid)
+            {
+                var db = new ApplicationDbContext();
+                var subscriptions = db.UserSubscriptions.Where(us => us.UserId.Equals(userId) && us.SubscriptionId.Equals(subscriptionId));
+
+                db.UserSubscriptions.RemoveRange(subscriptions);
+
+                await db.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Subscriptions", "Account", new { userId = userId });
         }
 
     }

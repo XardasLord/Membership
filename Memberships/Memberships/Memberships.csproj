@@ -369,6 +369,7 @@
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
+    <Content Include="Views\Account\Subscriptions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
