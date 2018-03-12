@@ -1,16 +1,36 @@
 ﻿@model Memberships.Models.ThumbnailAreaModel
 
-<div class="headline">
-    <h3>The title area</h3>
-</div>
 <div class="row">
-    <div class="col-sm-3">
-        <div class="thumbnail">
-            <img src="..." alt="" />
-            <div class="caption">
-                <h3>Thumbnail title</h3>
-                <p>thumbnail description</p>
-            </div>
+    @if (!Model.Title.IsEmpty())
+    {
+        <div class="headline">
+            <h3>@Model.Title</h3>
         </div>
-    </div>
+    }
+
+    @if (Model.Thumbnails != null)
+    {
+        foreach (var thumbnail in Model.Thumbnails)
+        {
+            <div class="col-sm-3">
+                <div class="thumbnail">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail-img-container">
+                            <img class="thumbnail-img" src="@thumbnail.ImageUrl" alt="@thumbnail.Title" />
+                        </div>
+                        <a href="@thumbnail.Link" class="tag text-tag hover-effect">
+                            @thumbnail.TagText
+                        </a>
+                        <div class="tag content-tag">@thumbnail.ContentTag</div>
+                    </div>
+                    <div class="caption">
+                        <h3><a href="@thumbnail.Link">@thumbnail.Title</a></h3>
+                        <p>@thumbnail.Description</p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
 </div>
+

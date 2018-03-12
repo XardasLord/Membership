@@ -2,3 +2,75 @@
     margin: 0 0 15px 0;
     border-bottom: 2px solid #72c02c;
 }
+
+.thumbnail {
+    padding: 5px;
+}
+
+    .thumbnail .tag {
+        position: absolute;
+        display: inline-block;
+        padding: 1px 6px;
+        right: -10px;
+        color: #fff;
+    }
+
+    .thumbnail .thumbnail-container {
+        position: relative;
+    }
+
+    .thumbnail .text-tag {
+        background-color: #72c02c;
+        bottom: 5px;
+    }
+
+    .thumbnail .content-tag {
+        background-color: #f79a47;
+        top: 5px;
+    }
+
+    .thumbnail .thumbnail-img-container {
+        overflow: hidden;
+    }
+
+    .thumbnail .thumbnail-img {
+        width: 100%;
+        height: auto;
+        transition: all 0.8s ease-in-out 0s;
+    }
+
+    .thumbnail a, a:focus, a:hover, a:active {
+        outline: 0 none !important;
+        text-decoration: none;
+    }
+
+    .thumbnail > a:focus, a:hover, a:active {
+        color: #72c02c;
+    }
+
+    .thumbnail .hover-effect {
+        transition: all 0.4s ease-in-out 0s;
+    }
+
+    .thumbnail a.text-tag:hover {
+        box-shadow: 0 0 0 2px #5fb611;
+    }
+
+    .thumbnail:hover a.text-tag {
+        right: 5px;
+    }
+
+    .thumbnail:hover {
+        box-shadow: 0 0 8px #555;
+        transition: box-shadow 0.2s ease-in-out 0s;
+    }
+
+        .thumbnail:hover img {
+            transform: scale(1.2) rotate(2deg);
+        }
+
+@media screen and (min-width: 280px) {
+    .thumbnail {
+        max-width: 260px;
+    }
+}
