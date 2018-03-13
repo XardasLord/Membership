@@ -29,9 +29,14 @@ namespace Memberships
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                       "~/Scripts/AdminMenu.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ui").Include(
+                      "~/Scripts/carret.js"));
+
             bundles.Add(new StyleBundle("~/Content/membership").Include(
                       "~/Content/navbar.css",
-                      "~/Content/thumbnails.css"));
+                      "~/Content/thumbnails.css",
+                      "~/Content/productContent.css",
+                      "~/Content/carret.css"));
 
         }
     }

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Memberships.Models.ProductSection>
+
+@foreach (var s in Model)
+{
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a href="#collapse@{@s.Id}" data-toggle="collapse" class="panel-carret">
+                    <span class="pull-left glyphicon glyphicon-play gly-rotate-90"></span>
+                    @s.Title
+                </a>
+            </h4>
+        </div>
+        <div id="collapse@{@s.Id}" class="panel-collapse collapse in">
+            <div class="panel-body">
+                @*Place item data here*@
+            </div>
+        </div>
+    </div>
+    <br />
+}
