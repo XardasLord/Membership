@@ -13,7 +13,10 @@
         </div>
         <div id="collapse@{@s.Id}" class="panel-collapse collapse in">
             <div class="panel-body">
-                @*Place item data here*@
+                @foreach(var item in s.Items)
+                {
+                    @Html.Partial("_ProductItemRowPartial", item)
+                }
             </div>
         </div>
     </div>
