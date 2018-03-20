@@ -19,3 +19,11 @@
             border: hidden;
             border-radius: 0px;
         }
+
+        .register-code-panel input[type="text"] {
+            width: 65%;
+        }
+
+        .register-code-panel button[type="button"] {
+            width: 33%;
+        }

@@ -494,10 +494,10 @@ namespace Memberships.Controllers
         }
         #endregion
 
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             var users = new List<UserViewModel>();
-            await users.GetUsersAsync();
+            users.GetUsers();
 
             return View(users);
         }
@@ -732,6 +732,9 @@ namespace Memberships.Controllers
             return RedirectToAction("Subscriptions", "Account", new { userId = userId });
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> RegisterUserAsync(RegisterUserModel model)
         {
             model.AcceptUserAgreement = true;
