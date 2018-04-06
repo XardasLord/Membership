@@ -9,3 +9,5 @@
 /Memberships/packages
 /Memberships/Memberships/App_Data/MembershipsDatabase_log.ldf
 /Memberships/Memberships/App_Data/MembershipsDatabase.mdf
+/Memberships/Memberships/Properties/PublishProfiles
+/Memberships/Memberships/obj/Release

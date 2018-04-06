@@ -21,6 +21,10 @@ else
         <li>
             @Html.GlyphLink("Account", "Login", "Log in", "user", "", "loginLink")
         </li>
+        <li>
+            @Html.GlyphLink("", "", "Password", "lock", "", "passwordLink", 
+                new Dictionary<string, string> { { "data-toggle", "modal" }, { "data-target", "#passwordModal" } })
+        </li>
         <div class="hidden-xs" login-panel-partial>
             @Html.Partial("_LoginPanelPartial", new LoginViewModel { Email = "", Password = "", RememberMe = false})
         </div>
