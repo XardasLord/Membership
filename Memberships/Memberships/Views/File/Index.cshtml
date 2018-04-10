@@ -1,0 +1,27 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Index"; 
+}
+
+<h2>Files</h2>
+<ul>
+    @foreach (var fName in Model)
+    {
+        var name = fName;
+        var link = @Url.Content("~/Content/Files/") + name.Replace(" ", "%20");
+        <li>
+            <a href="@link">@name</a>
+        </li>
+    }
+</ul>
+<div>
+    @using (Html.BeginForm("Index", "File", FormMethod.Post, new
+    {
+        enctype = "multipart/form-data"
+    }))
+    {
+        <input type="File" name="file" id="file" value="Choose File" />
+        <button type="submit">Upload</button>
+    }
+</div>
