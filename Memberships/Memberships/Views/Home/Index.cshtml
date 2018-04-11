@@ -24,11 +24,21 @@
             @Html.Partial("_RegisterUserPartial", new RegisterUserModel { Email = "", Name = "", Password = "" })
             @Html.Partial("_ForgotPasswordPanelPartial", new ForgotPasswordViewModel { Email = "" })
         </div>
+
     }
 </div>
 <div class="row">
     <div class="col-sm-3 regiger-code-area">
         @Html.Partial("_RegisterCodePartial")
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="container test-subscription-codes-content">
+                <h3>Available test subscription codes:</h3>
+                <ul class="subscription-list">
+                    <li>TEST123</li>
+                </ul>
+            </div>
+         }
     </div>
     <div class="col-sm-9">
 
