@@ -1,8 +1,10 @@
-﻿a[data-logout-button] {
-    color: #fff;
+﻿#log-off {
+    margin-top: 25px;
+    padding-top: 5px;
+    max-height: 30px;
 }
 
-.nav > li > a[data-logout-button]:hover {
+#log-off:hover {
     color: #fff;
     background-color: orangered;
     border-color: orangered;
