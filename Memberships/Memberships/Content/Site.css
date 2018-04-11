@@ -9,6 +9,16 @@
     padding-right: 15px;
 }
 
+.test-subscription-codes-content {
+    border: 1px solid gray;
+    background-color: lightgray;
+}
+
+    .test-subscription-codes-content ul.subscription-list {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
