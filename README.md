@@ -1,7 +1,9 @@
 # Memberships
 
 This is an MVC5 web application which was built using C#, Entity Framework, HTML5, CSS, JavaScript and Ajax. 
-**This web application is still in progress develompent. Application will be hosted on my server soon.**
+**This web application is still in progress develompent.**
+
+## Application is hosted on my server [here](http://memberships.pawelkowalewicz.pl/)
 
 This application has two interfaces and two user roles:
 - Administrator
