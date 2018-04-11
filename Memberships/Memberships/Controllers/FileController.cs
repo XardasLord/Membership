@@ -19,6 +19,7 @@ namespace Memberships.Controllers
             return View(files);
         }
 
+        // Sending file to the /Content/Files/ directory
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult Index(HttpPostedFileBase file)
